@@ -229,6 +229,7 @@
 		CAE341ED1D8150A200AA66CC /* LFNSString+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE341B91D8150A200AA66CC /* LFNSString+Currency.m */; };
 		CAE341EF1D8150A200AA66CC /* LFNSString+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE341BB1D8150A200AA66CC /* LFNSString+URLString.m */; };
 		CAE341F31D8150A900AA66CC /* LFWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE341F11D8150A900AA66CC /* LFWeakProxy.m */; };
+		CAF8AE561DBF3DD800895007 /* LFWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = CAE341F01D8150A900AA66CC /* LFWeakProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -634,6 +635,7 @@
 				CA68541F1D86B6BC008584D4 /* LFNSString+Add.h in Headers */,
 				CA6854201D86B6BC008584D4 /* LFNSString+Currency.h in Headers */,
 				CA6854211D86B6BC008584D4 /* LFNSString+URLString.h in Headers */,
+				CAF8AE561DBF3DD800895007 /* LFWeakProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
