@@ -74,7 +74,6 @@
 #import <LFCategory/LFUIView+DKAnalyses.h>
 #import <LFCategory/LFUIView+LFViewIsDisplaying.h>
 #import <LFCategory/LFUIViewController+Add.h>
-#import <LFCategory/LFUIViewController+DKAnalyses.h>
 
 #import <LFCategory/LFWeakProxy.h>
 
