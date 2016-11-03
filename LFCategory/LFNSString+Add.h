@@ -110,10 +110,10 @@ FOUNDATION_STATIC_INLINE BOOL NSStringIsEmpty(NSString *string)
 - (BOOL)lf_matchesRegex:(NSString *)regex;
 
 /// 遍历所有正则匹配
-/// @param match 匹配的 subString
-/// @param index 第几个匹配 (从0开始)
-/// @param matchRange 匹配的 subString 的范围
-/// @param stop 设置为NO则停止遍历
+/// match 匹配的 subString
+/// index 第几个匹配 (从0开始)
+/// matchRange 匹配的 subString 的范围
+/// stop 设置为NO则停止遍历
 - (void)lf_enumerateRegexMatches:(NSString *)regex usingBlock:(void (^)(NSString *match, NSInteger index, NSRange matchRange, BOOL *stop))block;
 
 - (void)lf_enumerateRegexMatches:(NSString *)regex caseInsensitive:(BOOL)caseIns usingBlock:(void (^)(NSString *match, NSInteger index, NSRange matchRange, BOOL *stop))block;
