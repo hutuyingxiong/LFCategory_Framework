@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name     = 'LFCategory'
-    s.version  = '1.0.3'
+    s.version  = '1.0.4'
     s.license  = 'MIT'
     s.summary  = 'A delightful iOS utility class'
     s.homepage = 'https://github.com/LaiFengiOS/LFCategory_Framework'
