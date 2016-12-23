@@ -11,8 +11,8 @@
 #import <objc/runtime.h>
 #import "LFUIControl+Add.h"
 #import "LFUIColor+Add.h"
-#import "LFUIImage+Add.h"
 #import "LFNSString+Add.h"
+#import "LFUIImage+Add.h"
 
 
 // 仅供本类内部使用 （解决外部设置enable失效的问题）
@@ -215,7 +215,7 @@ static float const customBarButtonHeight = 44.f;
     if (hlImage) {
         [customButton setImage:hlImage forState:UIControlStateHighlighted];
     } else {
-        [customButton setImage:[image darkenImageAlpha:alpha] forState:UIControlStateHighlighted];
+        [customButton setImage:[image lf_darkenImageAlpha:alpha] forState:UIControlStateHighlighted];
     }
     
     [customButton setFrame:CGRectMake(0, 0, customBarButtonWidth, customBarButtonHeight)];
