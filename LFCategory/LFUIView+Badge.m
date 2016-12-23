@@ -14,7 +14,7 @@
 #define LF_BADGE_VIEW_HEIGHT                ((sizeType == LFBadgeSizeTypeNormal) ? 15.0 : 15.0)
 #define LF_BADGE_VIEW_SAMLL_WIDTH           ((sizeType == LFBadgeSizeTypeNormal) ? 15.0 : 15.0)
 #define LF_BADGE_VIEW_STANDARD_WIDTH        ((sizeType == LFBadgeSizeTypeNormal) ? 22.0 : 22.0)
-#define LF_BADGE_VIEW_BIG_WIDTH             ((sizeType == LFBadgeSizeTypeNormal) ? 27.0 : 27.0)
+#define LF_BADGE_VIEW_BIG_WIDTH             ((sizeType == LFBadgeSizeTypeNormal) ? 32.0 : 32.0)
 
 #define LF_BADGE_VIEW_NEW_FONT              ((sizeType == LFBadgeSizeTypeNormal) ? 10.0 : 10.0)
 #define LF_BADGE_VIEW_NUMBER_FONT           ((sizeType == LFBadgeSizeTypeNormal) ? 12.0 : 12.0)
@@ -138,8 +138,8 @@ static char badgeShowallNumbersKey;
                 valueLimit = 100;
             }
             
-            if (value >=100) {
-                NSString *limtStr = [NSString stringWithFormat:@"%d+", valueLimit - 1];
+            if (value >=valueLimit) {
+                NSString *limtStr = [NSString stringWithFormat:@"%ld+", valueLimit - 1];
                 self.lf_badge.text = self.lf_showAllNumbers ? @(value).description : limtStr;
             } else {
                 self.lf_badge.text = [NSString stringWithFormat:@"%@", @(value)];
@@ -186,7 +186,7 @@ static char badgeShowallNumbersKey;
         self.lf_badge.lf_top = self.lf_badgeOriginY;
     }
     //********************************//
-
+    
     self.lf_badge.layer.cornerRadius = self.lf_badge.lf_height / 2;
     self.lf_badge.hidden = NO;
 }
@@ -265,7 +265,7 @@ static char badgeShowallNumbersKey;
 }
 
 - (BOOL)lf_isShowBage {
-
+    
     return self.lf_badge.hidden;
 }
 
