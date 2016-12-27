@@ -33,6 +33,18 @@
     }
 }
 
+
+- (void)setTintColor:(UIColor *)tintColor {
+    
+    [super setTintColor:tintColor];
+    if (self.customView) {
+        for (UIControl *ctrl in self.customView.subviews) {
+            ctrl.tintColor = tintColor;
+        }
+    }
+}
+
+
 @end
 
 
@@ -153,6 +165,40 @@ static float const customBarButtonHeight = 44.f;
     
 }
 
+
+// 只设置image新
++ (instancetype )lf_BarButtonItemWithImage:(UIImage *)image
+                          heightLightImage:(UIImage *)hlImage
+                                    margin:(CGFloat)margin
+                                 darkAlpha:(CGFloat)alpha
+                                 tintColor:(UIColor *)tintColor
+                                    target:(id)target
+                                    action:(SEL)selector
+                                  position:(LFCustomItemPosition)position {
+    
+    UIButton *customBtn = [self lf_CustomBarButtonWithTitle:nil
+                                                       font:nil
+                                                      color:nil
+                                           highlightedColor:nil
+                                              disabledColor:nil
+                                                      image:image
+                                           heightLightImage:hlImage
+                                                     margin:margin
+                                                  darkAlpha:alpha
+                                                  tintColor:nil
+                                                     target:target
+                                                     action:selector
+                                                   position:position];
+    
+    // 控制点击区域在button中（UIBarButtonItem 会默认扩大点击区域）
+    UIView *bgView = [[UIView alloc] initWithFrame:customBtn.frame];
+    [bgView addSubview:customBtn];
+    
+    return [[LFCustomBarButtonItem alloc] initWithCustomView:bgView];
+    
+}
+
+
 // 只设置image
 + (instancetype )lf_BarButtonItemWithImage:(UIImage *)image
                           heightLightImage:(UIImage *)hlImage
@@ -182,6 +228,95 @@ static float const customBarButtonHeight = 44.f;
     return [[LFCustomBarButtonItem alloc] initWithCustomView:bgView];
     
 }
+
+
+// 新
++ (UIButton*)lf_CustomBarButtonWithTitle:(NSString*)title
+                                    font:(UIFont *)font
+                                   color:(UIColor *)color
+                        highlightedColor:(UIColor *)hColor
+                           disabledColor:(UIColor *)dColor
+                                   image:(UIImage *)image
+                        heightLightImage:(UIImage *)hlImage
+                                  margin:(CGFloat)margin
+                               darkAlpha:(CGFloat)alpha
+                               tintColor:(UIColor *)tintColor
+                                  target:(id)target
+                                  action:(SEL)selector
+                                position:(LFCustomItemPosition)position {
+    
+    UIButton *customButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [customButton setTitle:title forState:UIControlStateNormal];
+    customButton.titleLabel.font = font ? font : [UIFont systemFontOfSize:16.f];
+    color = color ? color : LFUIColorWithHexRGB(0xffa000);
+    [customButton setTitleColor:color forState:UIControlStateNormal];
+    if (hColor) {
+        [customButton setTitleColor:hColor forState:UIControlStateHighlighted];
+    }
+    if (dColor) {
+        [customButton setTitleColor:dColor forState:UIControlStateDisabled];
+    }
+    
+    if (image) {
+        [customButton setImage:image forState:UIControlStateNormal];
+    }
+    if (hlImage) {
+        [customButton setImage:hlImage forState:UIControlStateHighlighted];
+    } else {
+        [customButton setImage:[image lf_darkenImageAlpha:alpha] forState:UIControlStateHighlighted];
+    }
+    
+    if (tintColor) {
+        [customButton setTintColor:tintColor];
+    }
+    
+    [customButton setFrame:CGRectMake(0, 0, customBarButtonWidth, customBarButtonHeight)];
+    CGSize sizeOfTitle = CGSizeZero;
+    if (title!=nil && ![title isEqualToString:@""]) {
+        sizeOfTitle = [title lf_sizeForFont:customButton.titleLabel.font size:CGSizeMake(100.0f, 22.0f) mode:NSLineBreakByTruncatingMiddle];
+        
+        if (sizeOfTitle.width <= customBarButtonWidth) {
+            [customButton setFrame:CGRectMake(0, 0, customBarButtonWidth + margin, customBarButtonHeight)];
+        } else {
+            [customButton setFrame:CGRectMake(0, 0, sizeOfTitle.width + margin, customBarButtonHeight)];
+        }
+        
+        if (position == LFCustomItemPositionLeft) {
+            [customButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+            [customButton setTitleEdgeInsets:UIEdgeInsetsMake(0, margin, 0, 0)];
+        } else {
+            [customButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+            [customButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, margin)];
+        }
+        
+    }
+    
+    
+    if (image) {
+        
+        if (image.size.width  <= customBarButtonWidth ) {
+            [customButton setFrame:CGRectMake(0, 0, customBarButtonWidth, customBarButtonHeight)];
+        } else {
+            [customButton setFrame:CGRectMake(0, 0, image.size.width + margin, customBarButtonHeight)];
+        }
+        
+        if (position == LFCustomItemPositionLeft) {
+            [customButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+            [customButton setImageEdgeInsets:UIEdgeInsetsMake(0, margin, 0, 0)];
+        } else {
+            [customButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+            [customButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, margin)];
+        }
+        
+    }
+    
+    [customButton addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    return customButton;
+}
+
+
 
 
 + (UIButton*)lf_CustomBarButtonWithTitle:(NSString*)title
