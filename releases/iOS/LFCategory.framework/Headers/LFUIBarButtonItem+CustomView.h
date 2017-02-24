@@ -54,6 +54,19 @@ typedef NS_ENUM(NSInteger, LFCustomItemPosition) {
                                     action:(SEL)selector
                                   position:(LFCustomItemPosition)position;
 
+
+// 只设置image
++ (instancetype )lf_BarButtonItemWithImage:(UIImage *)image
+                          heightLightImage:(UIImage *)hlImage
+                                    margin:(CGFloat)margin//title距离左边或右边屏幕距离（作为左item时候title距离屏幕左边距为0；右item时 距距离屏幕右边距为0）
+                                 darkAlpha:(CGFloat)alpha//按钮高亮时刻的变暗效果
+                                 tintColor:(UIColor *)tintColor//UITabBartem效果 选中后非透明部分显示tint颜色
+                                    target:(id)target
+                                    action:(SEL)selector
+                                  position:(LFCustomItemPosition)position;
+
+
+
 // 只设置image
 + (instancetype )lf_BarButtonItemWithImage:(UIImage *)image
                           heightLightImage:(UIImage *)hlImage
@@ -61,7 +74,7 @@ typedef NS_ENUM(NSInteger, LFCustomItemPosition) {
                                  darkAlpha:(CGFloat)alpha//按钮高亮时刻的变暗效果
                                     target:(id)target
                                     action:(SEL)selector
-                                  position:(LFCustomItemPosition)position;
+                                  position:(LFCustomItemPosition)position __deprecated_msg("Use `lf_BarButtonItemWithImage:heightLightImage:margin:darkAlpha:tintColor:target:action:position`");
 
 
 

@@ -71,7 +71,6 @@
 #import <LFCategory/LFUIView+Add.h>
 #import <LFCategory/LFUITableViewCell+LFCellMethodExtend.h>
 #import <LFCategory/LFUIView+Badge.h>
-#import <LFCategory/LFUIView+DKAnalyses.h>
 #import <LFCategory/LFUIView+LFViewIsDisplaying.h>
 #import <LFCategory/LFUIViewController+Add.h>
 #import <LFCategory/LFUIBarButtonItem+CustomView.h>
